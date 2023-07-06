@@ -2,7 +2,9 @@ from pathlib import Path
 import shutil
 import sys
 import file_parser as parser
-from normalize import normalize
+ 
+def normalize(filename: str) -> str:
+    return filename.replace(" ", ".").replace("_", ".")
 
 def handle_media(filename: Path, target_folder: Path) -> None:
     target_folder.mkdir(exist_ok=True, parents=True)
