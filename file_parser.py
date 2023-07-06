@@ -1,6 +1,7 @@
 import sys
 from pathlib import Path
-​
+
+
 JPEG_IMAGES = []
 JPG_IMAGES = []
 PNG_IMAGES = []
@@ -8,7 +9,7 @@ SVG_IMAGES = []
 MP3_AUDIO = []
 MY_OTHER = []
 ARCHIVES = []
-​
+
 REGISTER_EXTENSION = {
     'JPEG': JPEG_IMAGES,
     'JPG': JPG_IMAGES,
@@ -17,14 +18,14 @@ REGISTER_EXTENSION = {
     'MP3': MP3_AUDIO,
     'ZIP': ARCHIVES
 }
-​
+
 FOLDERS = []
 EXTENSION = set()
 UNKNOWN = set()
-​
+
 def get_extension(filename: str) -> str:
     return Path(filename).suffix[1:].upper()  # перетворюємо розширення файлу на назву папки jpg -> JPG
-​
+
 def scan(folder: Path) -> None:
     for item in folder.iterdir():
         # Якщо це папка то додаємо її до списку FOLDERS і переходимо до наступного елемента папки
@@ -50,8 +51,8 @@ def scan(folder: Path) -> None:
                 # Якщо ми не зареєстрували розширення у REGISTER_EXTENSION, то додаємо до невідомих
                 UNKNOWN.add(ext)
                 MY_OTHER.append(fullname)
-​
-​
+
+
 if __name__ == "__main__":
     folder_to_scan = sys.argv[1]
     print(f'Start in folder {folder_to_scan}')
@@ -61,9 +62,9 @@ if __name__ == "__main__":
     print(f'Images svg: {SVG_IMAGES}')
     print(f'Audio mp3: {MP3_AUDIO}')
     print(f'Archives: {ARCHIVES}')
-​
+
     print(f'Types of files in folder: {EXTENSION}')
     print(f'Unknown files of types: {UNKNOWN}')
     print(f'MY_OTHER: {MY_OTHER}')
-​
+
     print(FOLDERS)
